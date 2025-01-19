@@ -18,6 +18,7 @@ Implement Caching for people who don't want to log in it will just keep the musi
 ### Backend:
 Handling the interaction with the Database and storing all the user information such as time configuration and music that the user has saved
 - C#
+- Using Supabase
 - PostGres SQL as Database (Hosted using AWS RDS) 
 - OAuth Authentication
 
@@ -28,5 +29,5 @@ Handling the interaction with the Database and storing all the user information 
 
 
 ### Features to implement eventually (Nice to have)
-- Spotify Integration that preloads users Spotify playlists and plays it
+- Spotify Integration that preloads users' Spotify playlists
   
