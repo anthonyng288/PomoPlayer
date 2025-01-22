@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Settings from "./Settings";
-import Timer from "./Timer";
+import Settings from "./components/Settings";
+import Timer from "./components/Timer";
 
 function App() {
   const [showSettings, setShowSettings] = useState(true);
