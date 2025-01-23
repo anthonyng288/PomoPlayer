@@ -1,12 +1,12 @@
-import { Slider } from "@/components/ui/slider";
+import { Slider } from "./RangeSlider";
 
 const Settings = () => {
   return (
     <div className="text-left">
       <label>Work Minutes:</label>
-      <label>Break Minutes</label>
-
       <Slider defaultValue={[33]} max={100} step={1} />
+
+      <label>Break Minutes</label>
     </div>
   );
 };
