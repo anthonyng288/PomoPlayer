@@ -1,12 +1,15 @@
-import { Slider } from "./RangeSlider";
-
 const Settings = () => {
   return (
     <div className="text-left">
-      <label>Work Minutes:</label>
-      <Slider defaultValue={[33]} max={100} step={1} />
+      <div className="workMinutes">
+        <label>Work Minutes: </label>
+        <input type="range" min={0} max="100" value="50" className="range" />
+      </div>
 
-      <label>Break Minutes</label>
+      <div className="breakMinutes">
+        <label>Break Minutes: </label>
+        <input type="range" min={0} max="100" value="50" className="range " />
+      </div>
     </div>
   );
 };
