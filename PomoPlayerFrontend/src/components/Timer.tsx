@@ -23,9 +23,7 @@ const Timer = () => {
   const formatTime = (seconds: number): string => {
     const minutes = Math.floor(seconds / 60);
     const secs = seconds % 60;
-    return `${minutes.toString().padStart(2, "0")}:${secs
-      .toString()
-      .padStart(2, "0")}`;
+    return `${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
   };
 
   const handleStartPause = () => {
@@ -45,7 +43,7 @@ const Timer = () => {
     }
   };
 
-  return <div>Timer</div>;
+  return <div className="flex flex-col items-center justify-center gap-4"></div>;
 };
 
 export default Timer;
