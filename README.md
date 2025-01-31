@@ -30,4 +30,4 @@ Handling the interaction with the Database and storing all the user information 
 
 ### Features to implement eventually (Nice to have)
 - Spotify Integration that preloads users' Spotify playlists
-  
+- Test Change
