@@ -10,7 +10,7 @@ Handling the time, music processing, playing/pausing, using the Youtube API to b
 Implement Caching for people who don't want to log in it will just keep the music stored in the DB
 
 - React
-- Tailwind
+- MUI (This is like the third time changing)
 - Vite as the Bundler
 - Vitest and React Tests
 
