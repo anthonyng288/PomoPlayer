@@ -1,9 +1,11 @@
+import { Box, Button, Stack, TextField, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 
 const Timer = () => {
   // Might use these later to determine the time by the user's config
-
-  const [time, setTime] = useState(25 * 60); //Default 25 minutes
+  const theme = useTheme();
+  const minutes = 30;
+  const [time, setTime] = useState(minutes * 60); //Default 25 minutes
   const [isRunning, setIsRunning] = useState(false);
   const [customMinutes, setCustomMinutes] = useState("25");
 
@@ -47,27 +49,58 @@ const Timer = () => {
   };
 
   return (
-    <div>
+    <Stack
+      sx={{
+        padding: 2,
+        bgcolor: theme.palette.primary.main,
+        borderRadius: 1,
+        height: 300,
+        width: 500,
+      }}
+    >
       <h1>{formatTime(time)}</h1>
-      <div>
-        <button onClick={handleStartPause}>
-          {isRunning ? "Pause" : "Start"}
-        </button>
-        <button onClick={handleReset}>Reset</button>
-      </div>
+      <Box className="timerControls">
+        <div>
+          <Button variant="contained" onClick={handleStartPause}>
+            {isRunning ? "Pause" : "Start"}
+          </Button>
+          <Button variant="contained" onClick={handleReset}>
+            Reset
+          </Button>
+        </div>
 
-      <div>
-        <input
-          type="number"
-          min="1"
-          value={customMinutes}
-          onChange={(e) => {
-            setCustomMinutes(e.target.value);
-          }}
-        ></input>
-        <button onClick={handleCustomTime}>Set</button>
-      </div>
-    </div>
+        <Box>
+          <TextField
+            id="customMinutesInput"
+            variant="outlined"
+            color="primary"
+            size="small"
+            sx={{
+              backgroundColor: theme.palette.primary.light,
+              borderRadius: 3,
+              borderColor: "theme.palette.primary.contrastText",
+              input: { color: "white" },
+            }}
+            onChange={(e) => {
+              setCustomMinutes(e.target.value);
+            }}
+          />
+
+          <Button
+            disableElevation
+            variant="contained"
+            sx={{
+              backgroundColor: theme.palette.primary.light,
+              ml: 2,
+              height: "40px",
+            }}
+            onClick={handleCustomTime}
+          >
+            Set
+          </Button>
+        </Box>
+      </Box>
+    </Stack>
   );
 };
 
