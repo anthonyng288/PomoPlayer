@@ -1,13 +1,18 @@
-import { Box, Button, Stack, TextField, useTheme } from "@mui/material";
+import { Stack, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
+import TimeText from "./TimeText";
+import TimerButtons from "./TimerButtons";
 
 const Timer = () => {
   // Might use these later to determine the time by the user's config
+  // I might have to eventually move the red box to the root, so that I can switch to the focus reflection
+  //For now I can keep it here till I figure out the settings of the box in it's current form
+
   const theme = useTheme();
   const minutes = 30;
   const [time, setTime] = useState(minutes * 60); //Default 25 minutes
   const [isRunning, setIsRunning] = useState(false);
-  const [customMinutes, setCustomMinutes] = useState("25");
+  // const [customMinutes, setCustomMinutes] = useState("25");
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -23,14 +28,6 @@ const Timer = () => {
     return () => clearInterval(timer);
   }, [isRunning, time]);
 
-  const formatTime = (seconds: number): string => {
-    const minutes = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${minutes.toString().padStart(2, "0")}:${secs
-      .toString()
-      .padStart(2, "0")}`;
-  };
-
   const handleStartPause = () => {
     setIsRunning((prev) => !prev);
   };
@@ -40,66 +37,40 @@ const Timer = () => {
     setTime(25 * 60);
   };
 
-  const handleCustomTime = () => {
-    const minutes = parseInt(customMinutes, 10);
-    if (!isNaN(minutes) && minutes > 0) {
-      setTime(minutes * 60);
-      setIsRunning(false);
-    }
-  };
+  // const handleCustomTime = () => {
+  //   const minutes = parseInt(customMinutes, 10);
+  //   if (!isNaN(minutes) && minutes > 0) {
+  //     setTime(minutes * 60);
+  //     setIsRunning(false);
+  //   }
+  // };
 
   return (
     <Stack
       sx={{
-        padding: 2,
+        padding: 1,
         bgcolor: theme.palette.primary.main,
         borderRadius: 1,
-        height: 300,
-        width: 500,
+        height: "auto",
+        width: "auto",
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
       }}
     >
-      <h1>{formatTime(time)}</h1>
-      <Box className="timerControls">
-        <div>
-          <Button variant="contained" onClick={handleStartPause}>
-            {isRunning ? "Pause" : "Start"}
-          </Button>
-          <Button variant="contained" onClick={handleReset}>
-            Reset
-          </Button>
-        </div>
+      <TimeText time={time} />
+      <TimerButtons
+        isRunning={isRunning}
+        onStartPause={handleStartPause}
+        onReset={handleReset}
+      />
 
-        <Box>
-          <TextField
-            id="customMinutesInput"
-            variant="outlined"
-            color="primary"
-            size="small"
-            sx={{
-              backgroundColor: theme.palette.primary.light,
-              borderRadius: 3,
-              borderColor: "theme.palette.primary.contrastText",
-              input: { color: "white" },
-            }}
-            onChange={(e) => {
-              setCustomMinutes(e.target.value);
-            }}
-          />
-
-          <Button
-            disableElevation
-            variant="contained"
-            sx={{
-              backgroundColor: theme.palette.primary.light,
-              ml: 2,
-              height: "40px",
-            }}
-            onClick={handleCustomTime}
-          >
-            Set
-          </Button>
-        </Box>
-      </Box>
+      {/* Don't need this right now */}
+      {/* <CreateTimeInput
+        customMinutes={customMinutes}
+        setCustomMinutes={setCustomMinutes}
+        onSetCustomTime={handleCustomTime}
+      /> */}
     </Stack>
   );
 };
