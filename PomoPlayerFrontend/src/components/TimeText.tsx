@@ -2,7 +2,7 @@ type TimerDisplayProps = {
   time: number;
 };
 
-const TimeText: React.FC<TimerDisplayProps> = ({ time }) => {
+const TimeText = ({ time }: TimerDisplayProps) => {
   const formatTime = (seconds: number): string => {
     const minutes = Math.floor(seconds / 60);
     const secs = seconds % 60;
