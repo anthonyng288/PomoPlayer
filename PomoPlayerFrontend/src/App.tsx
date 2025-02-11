@@ -1,9 +1,13 @@
 import { Box, CssBaseline, ThemeProvider } from "@mui/material";
+import { useState } from "react";
 import "./App.css";
+import FocusReflection from "./components/FocusReflection";
 import Timer from "./components/Timer";
 import theme from "./theme";
 
 function App() {
+  const [reflection, setReflection] = useState(false);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -17,7 +21,7 @@ function App() {
           width: "100vw",
         }}
       >
-        <Timer />
+        {reflection ? <FocusReflection /> : <Timer />}
       </Box>
     </ThemeProvider>
   );
