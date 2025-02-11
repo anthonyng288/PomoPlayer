@@ -1,6 +1,7 @@
 import { Stack, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
-import TimeText from "./TimeText";
+import CreateTimeInput from "./CreateTimeInput";
+import TimeTextComponent from "./TimeTextComponent";
 import TimerButtons from "./TimerButtons";
 
 const Timer = () => {
@@ -12,7 +13,7 @@ const Timer = () => {
   const minutes = 30;
   const [time, setTime] = useState(minutes * 60); //Default 25 minutes
   const [isRunning, setIsRunning] = useState(false);
-  // const [customMinutes, setCustomMinutes] = useState("25");
+  const [customMinutes, setCustomMinutes] = useState("25");
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -37,13 +38,13 @@ const Timer = () => {
     setTime(25 * 60);
   };
 
-  // const handleCustomTime = () => {
-  //   const minutes = parseInt(customMinutes, 10);
-  //   if (!isNaN(minutes) && minutes > 0) {
-  //     setTime(minutes * 60);
-  //     setIsRunning(false);
-  //   }
-  // };
+  const handleCustomTime = () => {
+    const minutes = parseInt(customMinutes, 10);
+    if (!isNaN(minutes) && minutes > 0) {
+      setTime(minutes * 60);
+      setIsRunning(false);
+    }
+  };
 
   return (
     <Stack
@@ -58,7 +59,7 @@ const Timer = () => {
         justifyContent: "center",
       }}
     >
-      <TimeText time={time} />
+      <TimeTextComponent time={time} />
       <TimerButtons
         isRunning={isRunning}
         onStartPause={handleStartPause}
@@ -66,11 +67,11 @@ const Timer = () => {
       />
 
       {/* Don't need this right now */}
-      {/* <CreateTimeInput
+      <CreateTimeInput
         customMinutes={customMinutes}
         setCustomMinutes={setCustomMinutes}
         onSetCustomTime={handleCustomTime}
-      /> */}
+      />
     </Stack>
   );
 };
