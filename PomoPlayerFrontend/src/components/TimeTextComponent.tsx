@@ -1,8 +1,4 @@
-type TimerDisplayProps = {
-  time: number;
-};
-
-const TimeText = ({ time }: TimerDisplayProps) => {
+const TimeTextComponent = ({ time }: { time?: number }) => {
   const formatTime = (seconds: number): string => {
     const minutes = Math.floor(seconds / 60);
     const secs = seconds % 60;
@@ -11,7 +7,9 @@ const TimeText = ({ time }: TimerDisplayProps) => {
       .padStart(2, "0")}`;
   };
 
-  return <h1 className="timerText">{formatTime(time)}</h1>;
+  return (
+    <h1 className="timerText">{formatTime(time && time > 0 ? time : 1800)}</h1>
+  );
 };
 
-export default TimeText;
+export default TimeTextComponent;
