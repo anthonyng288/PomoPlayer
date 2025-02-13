@@ -6,7 +6,7 @@ import Timer from "./components/Timer";
 import theme from "./theme";
 
 function App() {
-  const [reflection, setReflection] = useState(false);
+  const [reflection, setReflection] = useState(true);
 
   return (
     <ThemeProvider theme={theme}>
